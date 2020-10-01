@@ -12,15 +12,23 @@ import axios from 'axios'
 }
 */
 let data = await Promise.all([
-    axios.get('http://localhost:7777/').then(() => 'Home'),
-    axios.get('http://localhost:7777/aboutme').then(() => 'Aboutme'),
-    axios.get('http://localhost:7777/aboutyou').then(() => 'Aboutyou'),
-    axios.get('http://localhost:7777/vote').then(() => 'VoteCheckRules'),
-    axios.get('http://localhost:7777/vote/:age').then(() => 'VoteEnterAge'),
+    axios.get('http://localhost:7777/').then((dataHttp) => dataHttp.data),
     axios
-        .get('http://localhost:7777/palindrome/:word')
-        .then(() => 'IsPalindrome'),
-    axios.get('http://localhost:7777/oddtest/:num').then(() => 'oddTest'),
+        .get('http://localhost:7777/aboutme')
+        .then((dataHttp) => dataHttp.data),
+    axios
+        .get('http://localhost:7777/aboutyou')
+        .then((dataHttp) => dataHttp.data),
+    axios.get('http://localhost:7777/vote').then((dataHttp) => dataHttp.data),
+    axios
+        .get('http://localhost:7777/vote/18')
+        .then((dataHttp) => dataHttp.data),
+    axios
+        .get('http://localhost:7777/palindrome/tenet')
+        .then((dataHttp) => dataHttp.data),
+    axios
+        .get('http://localhost:7777/oddtest/3')
+        .then((dataHttp) => dataHttp.data),
 ]).catch((err) => {
     console.error(err)
 })
