@@ -1,35 +1,32 @@
-import fs from 'fs/promises'
 import axios from 'axios'
 
-/*try {
-    let response = await axios.get('http://localhost:7777/')
-
-    let content = response.data
-    await fs.writeFile('app.js', content)
-    console.log(response.data)
-} catch (e) {
-    console.error(e)
-}
+/* 
+1) Définition d'une variable data, qui contient toutes les promises (await+objet Promise et méthode All)
+2) Array des request Http avec axios.get
+3).then + callBack avec en paramètre "response" qui retourne contenu de la clé data (.data) de l'objet response(response.data)
+4)On console.log la variable data qui retourne chaque clé data de chauqe reponse de requête. .
 */
+
 let data = await Promise.all([
-    axios.get('http://localhost:7777/').then((dataHttp) => dataHttp.data),
+    axios.get('http://localhost:7777/').then((response) => response.data),
     axios
         .get('http://localhost:7777/aboutme')
-        .then((dataHttp) => dataHttp.data),
+        .then((response) => response.data),
     axios
         .get('http://localhost:7777/aboutyou')
-        .then((dataHttp) => dataHttp.data),
-    axios.get('http://localhost:7777/vote').then((dataHttp) => dataHttp.data),
+        .then((response) => response.data),
+    axios.get('http://localhost:7777/vote').then((response) => response.data),
     axios
         .get('http://localhost:7777/vote/18')
-        .then((dataHttp) => dataHttp.data),
+        .then((response) => response.data),
     axios
         .get('http://localhost:7777/palindrome/tenet')
-        .then((dataHttp) => dataHttp.data),
+        .then((response) => response.data),
     axios
         .get('http://localhost:7777/oddtest/3')
-        .then((dataHttp) => dataHttp.data),
+        .then((response) => response.data),
 ]).catch((err) => {
     console.error(err)
 })
+
 console.log(data)
